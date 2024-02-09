@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS blogSite_db;
+DROP DATABASE IF EXISTS blogsite_db;
 
-CREATE DATABASE blogSite_db;
+CREATE DATABASE blogsite_db;
