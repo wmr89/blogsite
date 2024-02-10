@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { Blogpost, Comment, User } =require('../../models')
+const { Blogpost, Comment, User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
   // find all Blogpost
@@ -15,9 +16,10 @@ router.get("/:id", async (req, res) => {
   // find a single blogpost by its `id`
   try {
     const blogpostData = await Blogpost.findByPk(req.params.id, {
-       include: [
-     {model: Comment}
-   ],
+      include: [
+        { model: User },
+        { model: Comment, include: [{ model: User }] },
+      ],
     });
     if (!blogpostData) {
       res.status(404).json({ message: "No blogpost found with that id!" });
@@ -26,6 +28,21 @@ router.get("/:id", async (req, res) => {
     res.status(200).json(blogpostData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.post('/:id/comment', withAuth, async (req, res) => {
+  try {
+    const blogpostId = req.params.id;
+    const newComment = await Comment.create({
+      ...req.body,
+      user_id: req.session.user_id,
+      blogpost_id: blogpostId,
+    });
+
+    res.status(200).json(newComment);
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
