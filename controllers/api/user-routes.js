@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Blogpost } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.post('/', async (req, res) => {
   try {
+    console.log("success")
     const userData = await User.create(req.body);
 
     req.session.save(() => {
@@ -12,6 +14,7 @@ router.post('/', async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
+    console.log("caught error", err)
     res.status(400).json(err);
   }
 });
@@ -55,6 +58,20 @@ router.post('/logout', (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.get("/", async (req, res) => {
+  // find all user
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: {exclude: ['password']},
+      include: [{model: Blogpost}],
+    });
+    res.status(200).json(userData);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err);
   }
 });
 
