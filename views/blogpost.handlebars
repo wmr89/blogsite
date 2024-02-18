@@ -3,13 +3,13 @@
         <button class="btn btn-sm btn-danger delete" data-id="{{blogpost.id}}">DELETE</button>
       </div> --}}
       {{#if logged_in}}
-           <div class="col-md-4">
-        <button class="btn btn-sm btn-info text-right edit" data-id="{{blogpost.id}}">EDIT</button>
+           <div class="col-md-4" >
+        <button class="btn btn-sm btn-info text-right edit" data-id="{{id}}" >EDIT</button>
       </div>
       {{/if}}
-  <h2>{{title}}</h2>
+  <h2 id="blogpost-title" >{{title}}</h2>
   <div class="container1">
-    <p>{{content}}</p>
+    <p id="blogpost-content">{{content}}</p>
     <p>Created by {{user.username}} on {{createdAt}}</p>
   </div>
 
