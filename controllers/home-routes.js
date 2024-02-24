@@ -42,7 +42,8 @@ router.get('/blogpost/:id', async (req, res) => {
     res.render('blogpost'
     , {
       ...blogpost,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      logged_in_user_id: req.session.user_id,
     }
     );
   } catch (err) {
