@@ -11,7 +11,7 @@
       <form class="form new-blogpost-form">
         <div class="form-group">
           <label for="blogpost-title">Blogpost Title:</label>
-          <input class="form-input" type="text" id="blogpost-name" name="blogpost-name" />
+          <input class="form-input" type="text" id="blogpost-title" name="blogpost-name" />
         </div>
         <div class="form-group">
           <label for="blogpost-content">Type your blogpost content here:</label>
@@ -33,8 +33,8 @@
       <div class="col-md-8">
         <h4><a href="/blogpost/{{blogpost.id}}">{{blogpost.title}}</a></h4>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger delete" data-id="{{blogpost.id}}">DELETE</button>
+      <div class="col-md-4 delete">
+        <button class="btn btn-sm btn-danger" data-id="{{blogpost.id}}">DELETE</button>
       </div>
     </div>
     {{/each}}

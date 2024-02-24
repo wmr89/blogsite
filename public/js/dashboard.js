@@ -23,6 +23,7 @@ const newFormHandler = async (event) => {
   };
   
   const delButtonHandler = async (event) => {
+    console.log("success")
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
@@ -43,6 +44,6 @@ const newFormHandler = async (event) => {
     .addEventListener('submit', newFormHandler);
   
   document
-    .querySelector('.delete')
-    .addEventListener('click', delButtonHandler);
+    .querySelectorAll('.delete')
+    .forEach(button => button.addEventListener('click', delButtonHandler));
   

@@ -420,12 +420,12 @@
   }
   
   a {
-    color: #1b89bc;
+    color: #ffffff;
     text-decoration: none;
   }
   
   a:hover {
-    color: #065b83;
+    color: #8ad1f1;
     text-decoration: underline;
   }
   
@@ -892,7 +892,7 @@
   }
   
   .text-default {
-    color: #aeaeae !important;
+    color: #ffffff !important;
   }
   
   .text-light {
@@ -917,7 +917,7 @@
   
   /* BACKGROUND UTILS */
   .bg-primary {
-    background-color: #2d3e50 !important;
+    background-color: #15300f !important;
   }
   
   .bg-info {

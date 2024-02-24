@@ -8,7 +8,11 @@ const blogpostData = [
 { title: "Bootcamp",
 content: "Bootcamp is rough, make sure you are up for the grind",
 user_id: 3,
-}  
+},
+{ title: "Bootcamp",
+content: "Bootcamp is rough, make sure you are up for the grind",
+user_id: 2,
+}    
     
 ];
 

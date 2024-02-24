@@ -1,53 +1,61 @@
-<div class="text-center container1">
-        {{!-- <div class="col-md-4">
-        <button class="btn btn-sm btn-danger delete" data-id="{{blogpost.id}}">DELETE</button>
-      </div> --}}
-      {{#if logged_in}}
-           <div class="col-md-4" >
-        <button class="btn btn-sm btn-info text-right edit" data-id="{{id}}" >EDIT</button>
-      </div>
-      {{/if}}
-  <h2 id="blogpost-title" >{{title}}</h2>
-  <div class="container1">
-    <p id="blogpost-content">{{content}}</p>
-    <p>Created by {{user.username}} on {{createdAt}}</p>
-  </div>
+<div class="text-center container2">
 
+
+  <h2 id="blogpost-title">{{title}}</h2>
+  <div class="bg-primary">
+    <p id="blogpost-content">{{content}}</p>
+    <p>Created by {{user.username}} on {{format_date createdAt}}</p>
+  </div>
+  {{#if (user_edit logged_in_user_id user_id)}}
+    <div class="align-content-end">
+      <button
+        class="btn btn-sm btn-info text-right edit"
+        data-id="{{id}}"
+      >EDIT</button>
+    </div>
+  {{/if}}
   <h5>Comments</h5>
 
   {{#each comments as |comment|}}
-  <div class="container1">
-    <p>
-      {{comment.body}}
-    </p>
-    <p>
-      by
-      {{comment.user.username}}
-      at
-      <span class="comment-date">{{comment.createdAt}}</span>
-    </p>
-  </div>
+    <div class="container1">
+      <p>
+        {{comment.body}}
+      </p>
+      <p>
+        by
+        {{comment.user.username}}
+        at
+        <span class="comment-date">{{format_date comment.createdAt}}</span>
+      </p>
+    </div>
   {{/each}}
 
   {{#if logged_in}}
-  <form class="form new-comment-form" data-id="{{id}}">
-    <div class="form-group">
-      <h6 for="project-desc">Add a comment</h6>
-      <textarea class="form-input" id="comment-body" name="comment-body"></textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Submit Comment</button>
-    </div>
-  </form>
-  {{else}}
+    <form class="form new-comment-form" data-id="{{id}}">
       <div class="form-group">
-        <a href="/login">
-        <button class="btn btn-primary">Login to Comment</button>
-        </a>
+        <h6 for="project-desc">Add a comment</h6>
+        <textarea
+          class="form-input"
+          id="comment-body"
+          name="comment-body"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info">Submit Comment</button>
+      </div>
+    </form>
+  {{else}}
+    <div class="form-group">
+      <a href="/login">
+        <button class="btn btn-info">Login to Comment</button>
+      </a>
     </div>
   {{/if}}
 
 </div>
 
 <script src="/js/blogpost.js"></script>
+
+  {{#if (user_edit logged_in_user_id user_id)}}
 <script src="/js/editBlogpost.js"></script>
+  {{/if}}
